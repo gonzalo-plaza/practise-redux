@@ -12,9 +12,9 @@ const RETURN_CAR_MIRROR = 'RETURN_CAR_MIRROR';
 const RETURN_MOTORBIKE_MIRROR = 'RETURN_MOTORBIKE_MIRROR';
 
 /**
- * Action to buy a product in the shop
- * @param {number} qty Quantity of vehicles to buy
- * @param {string} type Type of buy action
+ * Product action in the shop
+ * @param {number} qty Quantity of product
+ * @param {string} type Type of action
  * @returns redux action
  */
 const product_action = (qty, type) => {
@@ -24,7 +24,7 @@ const product_action = (qty, type) => {
     }
 }
 
-// Reducers
+// States
 const default_vehicles_sate = {
     car: 10,
     motorbike: 5
@@ -35,6 +35,7 @@ const default_accesories_state = {
     motorbike_mirror: 10
 }
 
+// Reducers
 
 const accesories_reducer = (state = default_accesories_state, action) => {
     switch(action.type){
@@ -104,10 +105,15 @@ const rootReducers = combineReducers({
 
 // Store
 const store = createStore(rootReducers);
+
+// Show initial state of the store
 console.log('Initial state: ', store.getState());
+
+// Subscrite to store changes
 store.subscribe(() => {
     console.log('State change: ', store.getState())
 });
 
+// Do actions examples
 store.dispatch(product_action(3, BUY_CAR));
 store.dispatch(product_action(3, RETURN_CAR_MIRROR));
